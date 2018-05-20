@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.13.0/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.js"></script>
+    <script src="https://cdn.bootcss.com/node-waves/0.7.5/waves.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/node-waves/0.7.5/waves.min.css">
+    <style>
+        @keyframes grayscale2colorful {
+            from {
+                filter: grayscale(100%);
+            }
+            to {
+                filter: grayscale(0);
+            }
+        }
+
+        @keyframes colorful2grayscale {
+            from {
+                filter: grayscale(0);
+            }
+            to {
+                filter: grayscale(100%);
+            }
+        }
+
+        @keyframes fade_in_down {
+            from {
+                opacity: 0;
+                transform: translate3d(0, -100%, 0);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @keyframes rotate_in {
+            0% {
+                transform-origin: center;
+                transform: rotate(-200deg);
+                opacity: 0
+            }
+            to {
+                transform-origin: center;
+                transform: none;
+                opacity: 1
+            }
+        }
+
+        @keyframes blur2clear {
+            from {
+                filter: blur(3px);
+            }
+            to {
+                filter: blur(0);
+            }
+        }
+
+        #background {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: url("https://i.loli.net/2018/05/20/5b01299667b7d.jpg") no-repeat fixed center center;
+            background-size: cover;
+            z-index: -1;
+        }
+
+        #card {
+            margin-top: 6rem;
+            height: 30rem;
+            border-radius: 8px;
+            box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+        }
+
+        #card-left,
+        #card-right {
+            height: 30rem;
+            padding: 0;
+        }
+
+        #card-left {
+            border-radius: 8px 0 0 8px;
+            background-image: linear-gradient(to bottom right, rgb(105, 167, 221), rgb(62, 194, 201));
+            color: #FFFFFF;
+        }
+
+        #card-right {
+            border-radius: 0 8px 8px 0;
+            background-color: #FFFFFF;
+        }
+
+        #title {
+            padding-top: 5rem;
+        }
+
+        #about {
+            padding-top: 3rem;
+        }
+
+        #button {
+            padding-top: 8rem;
+        }
+
+        #avatar,
+        #text {
+            height: 50%;
+            padding: 3rem;
+        }
+
+        #link {
+            padding-top: 5rem;
+            word-wrap: break-word;
+            word-break: normal;
+        }
+
+        #link a {
+            font-size: 1.5rem;
+            color: rgb(62, 194, 201);
+            margin-left: 1rem;
+        }
+
+        #link a:first-child {
+            margin-left: 0;
+        }
+
+        #link a:hover {
+            text-decoration: none;
+        }
+
+        #footer {
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 1.5em;
+        }
+
+        #split {
+            margin-left: 1rem;
+            padding-left: 1rem;
+            height: 1rem;
+            border-left: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        @media(max-width: 767px) {
+            #card {
+                margin-top: -8px;
+            }
+            #card-left {
+                border-radius: none;
+            }
+        }
+
+        @media (max-width:991px) {
+            #footer {
+                margin-bottom: 1.5em;
+            }
+            #card {
+                box-shadow: none;
+            }
+            #card-left {
+                border-radius: 8px 8px 0 0;
+            }
+            #card-right {
+                border-radius: 0 0 8px 8px;
+            }
+        }
+    </style>
+    <title>Zhengsr</title>
+</head>
+
+<body>
+    <div id="background"></div>
+    <div id="container" class="container">
+        <div id="card" class="col-lg-12">
+            <div class="row">
+                <div id="card-left" class="col-lg-3">
+                    <div id="avatar">
+                        <img src="https://i.loli.net/2018/05/20/5b012918ccba5.jpg" class="rounded-circle img-fluid mx-auto d-block">
+                    </div>
+                    <div id="text" class="mx-auto text-center">
+                        <h2>Zhengsr</h2>
+                    </div>
+                </div>
+                <div id="card-right" class="col-lg-9">
+                    <div id="main">
+                        <h2 id="title" class="d-flex justify-content-center align-items-center text-center">I'm Zhengsr</h2>
+                        <h3 id="about" class="d-flex justify-content-center align-items-center text-center">
+                            Nothing.
+                        </h3>
+                        <div id="link" class="d-flex justify-content-center align-items-center">
+                            <a href="tencent://message/?uin=1397118926" class="fa fa-qq waves-effect waves-circle" aria-hidden="true"></a>
+                            <a href="mailto:1397118926@qq.com" class="fa fa-envelope waves-effect waves-circle" aria-hidden="true"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer id="footer" class="text-center d-flex justify-content-center align-items-center"></footer>
+        </div>
+    </div>
+    <script>
+        function write_hitokoto() {
+            $.get("https://api.lwl12.com/hitokoto/main/get", function (data) {
+
+                if (data.length > 40) {
+                    write_hitokoto()
+                } else {
+                    $("#footer").append(
+                        '<div id="split" class="d-none d-lg-block" /><div id="hitokoto" class="d-none d-lg-block">' +
+                        data + '</div>')
+                }
+            });
+        };
+
+        $(document).ready(function () {
+            $("#footer").append("© " + new Date().getFullYear() + " Zhengsr");
+            // Copyright (c) Zhousiru
+            write_hitokoto();
+            Waves.init();
+        });
+
+        $(window).on('load', function () {
+            NProgress.done();
+            $("#background").fadeIn(300, function () {
+                $("#background").css("animation", "grayscale2colorful 3s");
+                $("#background").css("filter", "grayscale(0)");
+                $("#container").css("animation", "fade_in_down 1s");
+                $("#container").css("opacity", "1");
+                $("#avatar img").css("animation", "rotate_in 1s");
+                $("#avatar img").css("opacity", "1");
+                $("#hello").css("display", "none");
+                setTimeout(function () {
+                    $("#footer").css("animation", "blur2clear 0.5s");
+                    $("#footer").css("filter", "blur(0)");
+                }, 1000);
+            });
+        });
+
+        NProgress.start()
+        $("#background").css({
+            "display": "none",
+            "filter": "grayscale(100%)"
+        });
+        $("#container").css("opacity", "0");
+        $("#avatar img").css("opacity", "0");
+        $("#footer").css("filter", "blur(3px)");
+    </script>
+</body>
+
+</html>
